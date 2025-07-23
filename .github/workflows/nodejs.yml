@@ -1,0 +1,33 @@
+# GitHub Actions workflow to test Node.js app
+name: Node.js CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code from the repo
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./app
+
+      # Step 4: Run server (اختياري مبدئيًا، نقدر نضيف اختبارات لاحقًا)
+      - name: Run build/test step
+        run: echo "✅ App setup completed!"
+
